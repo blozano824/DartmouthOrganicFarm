@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, View, Text, Dimensions, Button, Image, TouchableOpacity, Alert, TextInput, KeyboardAvoidingView, TouchableWithoutFeedback, ScrollView } from 'react-native';
-import { phonecall, text, web } from 'react-native-communications';
 import { Navigation } from 'react-native-navigation';
 import * as firebase from "firebase";
 
