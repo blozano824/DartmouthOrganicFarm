@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ScrollView, StatusBar, Alert, Text} from 'react-native';
+import {StyleSheet, View, ScrollView, StatusBar, Alert, Text, Dimensions} from 'react-native';
 import { Navigation } from 'react-native-navigation';
+import Graph from 'react-native-line-plot';
 import * as firebase from "firebase";
+const {height, width} = Dimensions.get('window')
 
 console.ignoredYellowBox = ['Remote debugger'];
 console.ignoredYellowBox = ['Setting a timer' ];
@@ -66,12 +68,33 @@ class FishGraphs extends Component {
   };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Hello</Text>
-      </View>
-    );
-  }
+      return (
+          <View style={styles.container}>
+              <View style={styles.graph}>
+                  <Graph
+                      graphHeight={(height / 4)}
+                      graphWidth={(width * 0.75)}
+                      data={[[0, 0], [33, 30], [66, 25], [99, 50]]}
+                      graphColorPrimary='#000000'
+                      graphColorSecondary='#FF0000'
+                      xUnit='foo'
+                      yUnit='bar'
+                  />
+              </View>
+              <View style={styles.graph}>
+                  <Graph
+                      graphHeight={(height / 4)}
+                      graphWidth={(width * 0.75)}
+                      data={[[0, 0], [33, 40], [66, 25], [99, 50]]}
+                      graphColorPrimary='#000000'
+                      graphColorSecondary='#FF0000'
+                      xUnit='foo'
+                      yUnit='bar'
+                  />
+              </View>
+          </View>  
+        );
+    }
 }
 
 const styles = StyleSheet.create({
@@ -93,6 +116,11 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 16,
     },
+    graph: { 
+        position: 'absolute',
+        left: 0,
+        bottom: 0,
+    }
 });
 
 export default FishGraphs;

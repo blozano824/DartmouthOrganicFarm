@@ -24,7 +24,7 @@ export default class SliderEntry extends Component {
 
     showLightBoxTankOptions = () => {
         Navigation.showLightBox({
-            screen: "FishStats.FishTanks.LightBoxTankOptions",
+            screen: "DartmouthOrganicFarm.FishTanks.LightBoxTankOptions",
             passProps: {
                 databaseLength: this.props.databaseLength,
                 index: this.props.index,
