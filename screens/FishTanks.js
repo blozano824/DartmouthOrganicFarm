@@ -7,18 +7,7 @@ import { sliderWidth, itemWidth, slideHeight } from '../components/Cards/CardEnt
 import SliderEntry from '../components/Cards/CardEntry';
 import styles from '../components/Cards/Cards.style';
 import * as firebase from "firebase";
-  // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyC0ryRPPeWd-TIzq6JkqhT2a_nX2cVHX1U",
-    authDomain: "fish-stats.firebaseapp.com",
-    databaseURL: "https://fish-stats.firebaseio.com",
-    projectId: "fish-stats",
-    storageBucket: "fish-stats.appspot.com",
-    messagingSenderId: "393092449198"
-  };
-  firebase.initializeApp(config);
 
-  var database = firebase.database();
 console.ignoredYellowBox = ['Remote debugger'];
 console.ignoredYellowBox = ['Setting a timer' ];
 
@@ -125,7 +114,7 @@ class FishTanks extends Component {
 
   showLightBoxNewTank = () => {
         Navigation.showLightBox({
-            screen: "FishStats.FishTanks.LightBoxNewTank",
+            screen: "DartmouthOrganicFarm.FishTanks.LightBoxNewTank",
             passProps: {
                 entriesLength: this.state.slidesLength,
                 onClose: this.dismissLightBox
@@ -141,22 +130,6 @@ class FishTanks extends Component {
     this.props.navigator.toggleDrawer({
       side: 'left',
       animated: true
-    });
-  };
-
-  showLightBox = () => {
-    this.props.navigator.showLightBox({
-      screen: "example.Types.LightBox",
-      passProps: {
-        title: 'LightBox',
-        content: 'Hey there, I\'m a light box screen :D',
-        onClose: this.dismissLightBox,
-      },
-      style: {
-        backgroundBlur: 'dark',
-        backgroundColor: 'rgba(0, 0, 0, 0.7)',
-        tapBackgroundToDismiss: true
-      }
     });
   };
 

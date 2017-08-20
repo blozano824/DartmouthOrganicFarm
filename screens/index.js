@@ -1,17 +1,19 @@
 import {Navigation, ScreenVisibilityListener} from 'react-native-navigation';
 
 import FishTanks from './FishTanks.js';
+import FishGraphs from './FishGraphs.js';
 
 import Drawer from './Drawer';
 import LightBoxTankOptions from '../components/LightBoxTankOptions.js';
 import LightBoxNewTank from '../components/LightBoxNewTank.js';
 
 export function registerScreens() {
-  Navigation.registerComponent('FishStats.FishTanks', () => FishTanks);
+  Navigation.registerComponent('DartmouthOrganicFarm.FishTanks', () => FishTanks);
+  Navigation.registerComponent('DartmouthOrganicFarm.FishGraphs', () => FishGraphs);
 
-  Navigation.registerComponent('example.Types.Drawer', () => Drawer);
-  Navigation.registerComponent('FishStats.FishTanks.LightBoxTankOptions', () => LightBoxTankOptions);
-  Navigation.registerComponent('FishStats.FishTanks.LightBoxNewTank', () => LightBoxNewTank);
+  Navigation.registerComponent('DartmouthOrganicFarm.Drawer', () => Drawer);
+  Navigation.registerComponent('DartmouthOrganicFarm.FishTanks.LightBoxTankOptions', () => LightBoxTankOptions);
+  Navigation.registerComponent('DartmouthOrganicFarm.FishTanks.LightBoxNewTank', () => LightBoxNewTank);
 }
 
 export function registerScreenVisibilityListener() {
