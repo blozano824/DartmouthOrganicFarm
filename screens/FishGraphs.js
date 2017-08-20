@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ScrollView, StatusBar, Alert} from 'react-native';
+import {StyleSheet, View, ScrollView, StatusBar, Alert, Text} from 'react-native';
 import { Navigation } from 'react-native-navigation';
 import * as firebase from "firebase";
 
@@ -68,7 +68,7 @@ class FishGraphs extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.getCarousel()}
+        <Text>Hello</Text>
       </View>
     );
   }
