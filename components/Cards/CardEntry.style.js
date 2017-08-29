@@ -22,7 +22,7 @@ export default StyleSheet.create({
         width: itemWidth,
         height: slideHeight,
         paddingHorizontal: itemHorizontalMargin,
-        paddingBottom: 18, // needed for shadow
+        paddingTop: 18, // needed for shadow
     },
     imageContainer: {
         height: slideHeight-260,

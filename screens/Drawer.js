@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View, Button, Text, ScrollView, Image, Dimensions} from 'react-native';
+import {StyleSheet, View, Button, Text, ScrollView, ImageBackground, Dimensions} from 'react-native';
 import Row from '../components/Row';
 import * as firebase from "firebase";
 
@@ -56,10 +56,11 @@ class MyClass extends React.Component {
         console.log("checking temperature for entry " + i)
         notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].temperature, 'temperature', 22, 26))
         notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].dissolvedOxygen, 'dissolved oxygen level', 22, 23, 25, 26))
-        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].ph, 'ph', 22, 23, 25, 26))
-        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].TAN, 'ph', 22, 23, 25, 26))
-        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].NH3, 'ph', 22, 23, 25, 26))
-        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].NO2, 'ph', 22, 23, 25, 26))
+        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].pH, 'pH', 22, 23, 25, 26))
+        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].TAN, 'TAN', 22, 23, 25, 26))
+        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].NH3, 'NH3', 22, 23, 25, 26))
+        notifications.push(this.generateNotification(i, this.state.entries[i].tankName, this.state.entries[i].NO2, 'NO2', 22, 23, 25, 26))
+        notifications.push(this.generateNotDone(i, this.state.entries[i].tankName, this.state.entries[i].temperature, this.state.entries[i].dissolvedOxygen, this.state.entries[i].pH))
       }
     }
     console.log(notifications)
@@ -83,10 +84,10 @@ class MyClass extends React.Component {
     var rangeTopWarning = rangeTop-(0.4*(rangeTop-rangeBottom))
     if (unit != undefined){
       if (unit < rangeBottom){
-        return (<Row key={index+unitName} title={'Urgent: The ' + unitName + " for tank "+ tankName +" is below acceptable range."} urgent={true} warning={false}/>)
+        return (<Row key={index+unitName} title={'URGENT: The ' + unitName + " for tank "+ tankName +" is below acceptable range."} urgent={true} warning={false}/>)
       }
       if (unit >= rangeBottom && unit < rangeBottomWarning){
-        return (<Row key={index+unitName} title={'Warning: The ' + unitName + " for tank "+ tankName +" is nearing the lower acceptable range."} urgent={false} warning={true}/>)
+        return (<Row key={index+unitName} title={'WARNING: The ' + unitName + " for tank "+ tankName +" is nearing the lower acceptable range."} urgent={false} warning={true}/>)
       }
       if (unit >= rangeBottomWarning && unit <= rangeTopWarning){
       }
@@ -99,18 +100,27 @@ class MyClass extends React.Component {
     }
   }
 
+  generateNotDone(index, tankName, temperature, dissolvedOxygen, pH){
+    if (temperature == undefined && dissolvedOxygen == undefined && pH == undefined){
+      return (<Row key={index+tankName} title={'URGENT: Daily water quality tests have not been done on tank '+ tankName + "."} urgent={true} warning={false}/>)
+    }
+    if (temperature == undefined || dissolvedOxygen || undefined && pH || undefined){
+      return (<Row key={index+tankName} title={'WARNING: Daily water quality tests have been partially done on tank '+ tankName + "."} urgent={false} warning={true}/>)
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Image style={{height: height*0.3, width: width*0.75, backgroundColor: '#bdc3c7'}} source={require("../img/organicfarm.jpg")} blurRadius={5} resizeMode="cover">
+        <ImageBackground style={{height: height*0.3, width: width*0.75, backgroundColor: '#bdc3c7'}} source={require("../img/organicfarm.jpg")} blurRadius={5} resizeMode="cover">
           <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(34,139,34,0.4)', }}>
             <Text style={{backgroundColor: 'rgba(0,0,0,0)', color: '#ffffff', fontSize: 25, fontWeight: '900', textAlign: 'center'}}>{"Dartmouth Organic\nFarm App"}</Text>
           </View>
-        </Image>
+        </ImageBackground>
         <View style={styles.notifications}>
           <Text style={{color: '#ffffff', fontWeight: '700', fontSize: 22, padding: 5}}>{'Notifications'}</Text>
         </View>
-        <ScrollView style ={{borderRightWidth: 4, borderLeftWidth: 4, borderColor: '#27ae60'}}>
+        <ScrollView showsVerticalScrollIndicator={false} style ={{borderRightWidth: 4, borderLeftWidth: 4, borderColor: '#27ae60'}}>
           {this.collectNotifications()}
         </ScrollView>
       </View>

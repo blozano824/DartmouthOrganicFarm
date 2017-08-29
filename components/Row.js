@@ -26,14 +26,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
   },
   text: {
     paddingTop: 10,
     paddingBottom: 10,
     fontSize: 16,
     color: '#ffffff',
-    fontWeight: '600'
+    fontWeight: '600',
   },
   urgent:{
     backgroundColor:'#c0392b',

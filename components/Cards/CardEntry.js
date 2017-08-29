@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import styles from './CardEntry.style';
 import { Navigation } from 'react-native-navigation';
+import Graph from '../Graph.js'
 
 export default class SliderEntry extends Component {
 
@@ -152,6 +153,7 @@ export default class SliderEntry extends Component {
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
                     
                     <Image source={require('../../img/fish.gif')} style={styles.image}/>
+                    {/* <Graph index={index} tankName={tankName}/> */}
 
                 </View>
                 <View style={[styles.textContainer, even ? styles.textContainerEven : {}]}>

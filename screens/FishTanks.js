@@ -166,17 +166,13 @@ class FishTanks extends Component {
       <Pagination
         dotsLength={slidesLength}
         activeDotIndex={activeSlide}
-        containerStyle={{ height: 5 }}
+        containerStyle={{ height: 1, backgroundColor: 'rgba(0,0,0,0)'}}
         dotStyle={{
           width: 20,
           height: 20,
           borderRadius: 10,
           marginHorizontal: 8,
-          backgroundColor: '#27ae60',
-          shadowOffset: { width: 0, height: 2 },
-          shadowColor: 'black',
-          shadowOpacity: 0.9,
-          shadowRadius: 5,
+          backgroundColor: '#27ae60'
         }}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
@@ -187,7 +183,6 @@ class FishTanks extends Component {
   getCarousel() {
     return (
       <View style={{ paddingTop: 0 }}>
-        {this.getPagination()}
         <StatusBar
           barStyle="light-content"
         />
@@ -218,6 +213,9 @@ class FishTanks extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={{height: 45}}>
+        {this.getPagination()}
+        </View>
         {this.getCarousel()}
       </View>
     );
